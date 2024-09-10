@@ -21,6 +21,7 @@ export type NpErrorCtorData = {
 	parent?: any;
 	key?: keyof any;
 	error?: unknown;
+	context?: string;
 };
 
 export function formatErrorMessage({
@@ -28,15 +29,18 @@ export function formatErrorMessage({
 	error,
 	key,
 	value,
+	context,
 }: NpErrorCtorData): string {
 	if (code in ErrorCodeStrings) {
 		const prefix = key
 			? `${String(key)} is ${String(value)},`
 			: `${String(value)} is`;
 
+		const ctx = context ? `\nContext: ${context}\n` : "";
+
 		const suffix = error ? ` ${String(error)}` : "";
 
-		return `${prefix} ${ErrorCodeStrings[code]}.${suffix}`;
+		return `${prefix} ${ErrorCodeStrings[code]}.${ctx}${suffix}`;
 	}
 
 	return String(error);
@@ -47,6 +51,7 @@ export class NpError extends Error {
 	value;
 	parent;
 	key;
+	context;
 
 	constructor(data: NpErrorCtorData) {
 		// prevent NpError recursion
@@ -56,11 +61,12 @@ export class NpError extends Error {
 
 		super(formatErrorMessage(data));
 
-		const { code = ErrorCodes.unknown, value, parent, key } = data;
+		const { code = ErrorCodes.unknown, value, parent, key, context } = data;
 
 		this.code = code;
 		this.value = value;
 		this.parent = parent;
 		this.key = key;
+		this.context = context;
 	}
 }

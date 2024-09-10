@@ -4,6 +4,7 @@ import { readReal } from "./readReal";
 export function readInt<P extends object, K extends keyof P>(
 	parent: P,
 	key: K,
+	context?: string
 ): number {
 	let value;
 
@@ -16,6 +17,7 @@ export function readInt<P extends object, K extends keyof P>(
 				value,
 				parent,
 				key,
+				context,
 			});
 		}
 
@@ -25,6 +27,7 @@ export function readInt<P extends object, K extends keyof P>(
 				value,
 				parent,
 				key,
+				context,
 			});
 		}
 
@@ -36,6 +39,7 @@ export function readInt<P extends object, K extends keyof P>(
 			value: value,
 			parent,
 			key,
+			context,
 		});
 	}
 }

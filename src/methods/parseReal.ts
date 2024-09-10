@@ -1,6 +1,6 @@
 import { ErrorCodes, NpError } from "../error";
 
-export function parseReal<I>(argument: I): number {
+export function parseReal<I>(argument: I, context?: string): number {
 	try {
 		const value = Number(argument);
 
@@ -8,6 +8,7 @@ export function parseReal<I>(argument: I): number {
 			throw new NpError({
 				code: ErrorCodes.not_a_number,
 				value: argument,
+				context,
 			});
 		}
 
@@ -15,6 +16,7 @@ export function parseReal<I>(argument: I): number {
 			throw new NpError({
 				code: ErrorCodes.not_finite,
 				value,
+				context,
 			});
 		}
 
@@ -24,6 +26,7 @@ export function parseReal<I>(argument: I): number {
 			code: ErrorCodes.unknown,
 			error,
 			value: argument,
+			context,
 		});
 	}
 }

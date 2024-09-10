@@ -2,7 +2,8 @@ import { ErrorCodes, NpError } from "../error";
 
 export function readReal<P extends object, K extends keyof P>(
 	parent: P,
-	key: K
+	key: K,
+	context?: string
 ): number {
 	let argument, value;
 
@@ -16,6 +17,7 @@ export function readReal<P extends object, K extends keyof P>(
 				value: argument,
 				parent,
 				key,
+				context,
 			});
 		}
 
@@ -25,6 +27,7 @@ export function readReal<P extends object, K extends keyof P>(
 				value,
 				parent,
 				key,
+				context,
 			});
 		}
 
@@ -36,6 +39,7 @@ export function readReal<P extends object, K extends keyof P>(
 			value: value || argument,
 			parent,
 			key,
+			context,
 		});
 	}
 }
