@@ -43,7 +43,7 @@ export function formatErrorMessage({
 		return `${prefix} ${ErrorCodeStrings[code]}.${ctx}${suffix}`;
 	}
 
-	return String(error);
+	return context ? `${String(error)}\nContext: ${context}` : String(error);
 }
 
 export class NpError extends Error {
