@@ -92,6 +92,10 @@ Attempts to read and parse a real number from the specified property `key` of th
     -   `key: K` - The key of the property to read and parse.
 -   **Returns**: A number representing the parsed real number.
 
+## Context parameter
+
+-   Each method has an additional `context?: string` parameter, which, if present, is included in error messages should an error be thrown.
+
 ## Error Handling
 
 These functions strictly enforce the validation of the input data, throwing errors when encountering invalid or non-numeric inputs:
