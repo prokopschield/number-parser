@@ -13,7 +13,7 @@ export function readInt<P extends object, K extends keyof P>(
 
 		if (!Number.isInteger(value)) {
 			throw new NpError({
-				code: ErrorCodes.not_a_number,
+				code: ErrorCodes.not_an_integer,
 				value,
 				parent,
 				key,
