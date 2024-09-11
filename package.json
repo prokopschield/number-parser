@@ -1,7 +1,7 @@
 {
 	"name": "@prokopschield/number-parser",
 	"description": "a fallible number parser which never yields NaN",
-	"version": "0.1.0-3",
+	"version": "0.1.0-4",
 	"main": "lib/index.js",
 	"author": "Prokop Schield",
 	"dependencies": {},
